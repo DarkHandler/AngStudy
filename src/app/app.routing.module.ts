@@ -6,13 +6,17 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { UserComponent } from "./users/user/user.component";
 import { ListComponent } from "./users/list/list.component";
 import { DetailsComponent } from "./users/details/details.component";
+import { PermissionsGuard } from "./guards/permissions.guard";
+import { WithoutSaveGuard } from "./guards/without-save.guard";
 
 const routes: Routes = [
     {path:'', redirectTo: '/home', pathMatch: 'full'},
-    {path: 'contact-template/:id', component: ContactComponent},
+    //can deactivate es asegurarse de que el usuario puede dejar esa ruta
+    {path: 'contact-template/:id', component: ContactComponent, canDeactivate: [WithoutSaveGuard]},
     {path: 'contact-template', component: ContactComponent},
     {path: 'home', component: HomeComponent},
-    {path: 'users', component:UserComponent,  //estas son rutas hijas
+    //el guard protege a las rutas hijas tambien
+    {path: 'users', component:UserComponent, canActivate: [ PermissionsGuard ], //estas son rutas hijas pero le pondremos guards para asegurar los permisos de acceso
         children: [
             {path: 'list', component: ListComponent},
             {path: 'details', component: DetailsComponent},
