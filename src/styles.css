@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+.selected{
+    background-color: rgb(110, 169, 224);
+    color: white;
+    padding: 10px;
+}
+
+.unSelected{
+    background-color: white;
+    padding: 10px;
+}

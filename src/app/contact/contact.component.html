@@ -1,0 +1,48 @@
+
+
+<div class="container">
+
+    <h1>Contact Form {{personName}} {{id}}</h1>
+    <pre>
+        {{conctactForm.value | json}}
+    </pre>
+    
+    <form (ngSubmit)="onSubmit(conctactForm.value)" #conctactForm="ngForm">
+        <div class="container">
+            <div class="row">
+                <label for="name">Name</label>
+                <!--#name="ngModel" esto es una variable de referencia-->
+                <input type="text" id="name" name="name" [(ngModel)]="model.name" required #name="ngModel"> <!--two way data binding para cargar datos en el formulario (caso en el que se traen de una api como modificacion)-->
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger" >This field is required.</div>
+                <!--Campo valid - esconder cuando el usuario haya puesto algo valido y Campo pristine - para cuando cambia algo del UI o el usuario lo cambia-->
+            </div>
+            <br>
+            <div class="row">
+                <label for="checkAdult">Are you over 18 years of age?</label>
+                <input type="checkbox" id="checkAdult" name="checkAdult" [(ngModel)]="model.checkAdult" required #checkAdult="ngModel">
+                <div [hidden]="checkAdult.valid || checkAdult.pristine" class="alert alert-danger">This field is required.</div>
+            </div>
+            <br>
+            <div class="row">
+                <label for="department">Name</label>
+                <select name="department" id="department" [(ngModel)]="model.department">
+                    <option selected>Open this select menu</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="sales">Sales</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <br>
+            <div class="row">
+                <label for="comment">Comment</label>
+                <textarea name="comment" id="comment" rows="4" placeholder="Leave a comment" [(ngModel)]="model.comment" required #comment="ngModel"></textarea>
+                <div [hidden]="comment.valid || comment.pristine" class="alert alert-danger">This field is required.</div>
+            </div>
+            <br>
+            <div>
+                <button class="btn btn-primary" type="submit" [disabled]="conctactForm.invalid">Send</button>
+            </div>
+        </div>
+    </form>
+
+</div>    

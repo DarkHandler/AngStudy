@@ -1,0 +1,53 @@
+
+
+<div class="container">
+
+  <div class="row">
+    <p *ngIf="name">Nombre: {{ name }}</p>
+    <div class="col-md-1">
+      <label class="form-label">Name Label: </label>
+    </div>
+    <div class="col-md-2">
+      <input class="form-control" type="text" [(ngModel)]="name">
+    </div>
+    <div class="col-md-9"></div>
+  </div>
+  
+  
+  <div class="row">
+    <div class="col">
+      <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'"></app-form-new-item>
+    </div>
+    <div class="col">
+      <input class="form-control" type="text" placeholder="Filter...." [(ngModel)]="criteria">
+    </div>
+  </div>
+  <hr>
+  
+  
+  <!--Directiva estructural debido a que se modifica el DOM-->
+  <ul>
+    <app-cities *ngFor="let city of (cities | filter:criteria)"  (cityClickedEvent)="onCityClicked($event)" [city]="city" [selection]="selection"></app-cities>
+  </ul>
+  
+  <div *ngIf="selection">
+    <p>Your city is: {{ selection }}</p>
+    <!-- <button (click)="clearSelection()">Clear your selection</button> -->
+    <app-button (click)="clearSelection()" [color]="'blue'" [label]="'Clear your selection'" [selection]="selection"></app-button>
+  </div>
+  
+
+  <input type="text" (keypress)="onSearch()">
+  
+  <hr>
+  <!--Uso de pipes (hay 2 tipos, que se modifica cuando haya cambiado la transofrmacion -- puros y los que cambian de todas formas -- inpuros)-->
+  <h2>Aqui presento algunos Pipes</h2>
+  <p> My birthday is: {{'6/15/15, 9:30 AM' | date:'full' | uppercase}}</p>
+  <p>{{ '999' | currency:'CLP' }}</p>
+  <p>{{ '999' | currency:'EUR' }}</p>
+  
+  <hr>
+  
+</div>
+
+  
