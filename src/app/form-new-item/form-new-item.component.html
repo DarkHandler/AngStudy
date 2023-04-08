@@ -5,10 +5,17 @@
     </div>
     <div class="row">
         <div class="col">
-            <input class="form-control" type="text" id="newItem" #newItem>
+            <!--El input debe tener un name para poder usar le ngModel-->
+            <input class="form-control" type="text" name="newItem" id="newItem" [(ngModel)]="selection.name" #newItem>
         </div>
         <div class="col">
-            <button class="btn btn-info" (click)="onAddNewItem(newItem.value)" type="button" [ngClass]="[className]">Add {{label}}</button>
+            <!--Se muestra si no se tiene seleccionado ya que se agrega-->
+            <button *ngIf="!selection.name" class="btn btn-info" (click)="onAddNewItem(newItem.value); newItem.value=''" type="button" 
+                [ngClass]="[className]">Add {{label}}</button>
+
+            <!--Se muestra si se tiene selecionado-->
+            <button *ngIf="selection.name" class="btn btn-info" (click)="onUpdateItem(selection, newItem.value); newItem.value=''" type="button" 
+                [ngClass]="[className]">Update {{label}}</button>
         </div>
     </div>
 </form>

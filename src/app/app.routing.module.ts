@@ -38,7 +38,7 @@ const routes: Routes = [
 
 //un decorador con configuracion que cambia el comportamiento de esta clase
 @NgModule({
-    imports:[RouterModule.forRoot(routes)],
+    imports:[RouterModule.forRoot(routes)], //forRoot se utiliza para poner todas las rutas en el modulo principal raiz, todo lo que no es lazy loading, sera eagil
     exports:[RouterModule]
 })
 

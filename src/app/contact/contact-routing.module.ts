@@ -13,7 +13,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes)], //se usa forChild por que es un modulo que angular no necesita generar un packate para necesitarlo enseguida
   exports: [RouterModule]
 })
 export class ContactRoutingModule { }

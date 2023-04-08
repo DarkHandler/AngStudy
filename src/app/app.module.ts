@@ -15,6 +15,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { UserComponent } from './users/user/user.component';
 import { DetailsComponent } from './users/details/details.component';
 import { ListComponent } from './users/list/list.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SpinnerInterceptor } from './shared/spinner/spinner.interceptor';
 
 @NgModule({
   declarations: [
@@ -29,14 +32,18 @@ import { ListComponent } from './users/list/list.component';
     PageNotFoundComponent,
     UserComponent,
     DetailsComponent,
-    ListComponent
+    ListComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule, //este lo dejo para que me funcionen algunas funcionalidades de home que tengo, como lo son ngModel
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}, //multi es que podemos utilizar mas de un interceptor
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

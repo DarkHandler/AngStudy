@@ -13,15 +13,15 @@ export class ButtonComponent implements OnChanges, OnInit, OnDestroy{
 
   //Life cycle of components
   ngOnChanges(changes: SimpleChanges):void{
-    console.log('Change->', changes);
+    //console.log('Change->', changes);
   }
 
   ngOnInit(): void {
-    console.log('OnInit->');
+    //console.log('OnInit->');
   }
 
   ngOnDestroy(): void {
-    console.log('Destroy'); 
+    //console.log('Destroy'); 
   }
 
 
