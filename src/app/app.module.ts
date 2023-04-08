@@ -23,7 +23,7 @@ import { ListComponent } from './users/list/list.component';
     FormNewItemComponent,
     CitiesComponent,
     FilterPipe,
-    ContactComponent,
+    //ContactComponent, //sacado por lazy loading y trabajo del contact.module.ts
     HomeComponent,
     NavbarComponent,
     PageNotFoundComponent,
@@ -33,7 +33,7 @@ import { ListComponent } from './users/list/list.component';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, //este lo dejo para que me funcionen algunas funcionalidades de home que tengo, como lo son ngModel
     AppRoutingModule
   ],
   providers: [],
