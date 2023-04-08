@@ -8,11 +8,16 @@ import { ListComponent } from "./users/list/list.component";
 import { DetailsComponent } from "./users/details/details.component";
 import { PermissionsGuard } from "./guards/permissions.guard";
 import { WithoutSaveGuard } from "./guards/without-save.guard";
+import { DataResolverService } from "./resolvers/data.resolver.service";
 
 const routes: Routes = [
     {path:'', redirectTo: '/home', pathMatch: 'full'},
     //can deactivate es asegurarse de que el usuario puede dejar esa ruta
-    {path: 'contact-template/:id', component: ContactComponent, canDeactivate: [WithoutSaveGuard]},
+    {
+        path: 'contact-template/:id', 
+        component: ContactComponent, 
+        resolve: {departments: DataResolverService}, 
+        canDeactivate: [WithoutSaveGuard]},
     {path: 'contact-template', component: ContactComponent},
     {path: 'home', component: HomeComponent},
     //el guard protege a las rutas hijas tambien

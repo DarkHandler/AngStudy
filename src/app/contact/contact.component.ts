@@ -18,6 +18,7 @@ export class ContactComponent implements OnInit{
   
   id!: string;
   personName!: string;
+  departments: string[] = [];
   
   model = {
     name: "",
@@ -26,9 +27,16 @@ export class ContactComponent implements OnInit{
     comment: ""
   }
 
-  constructor(private readonly route: ActivatedRoute){}  
+  constructor(
+    private readonly route: ActivatedRoute
+    ){}  
 
   ngOnInit(): void{
+
+    //angular se asegura de que hasta que esta data no este disponible mi componente no se va a renderizar 
+    this.departments = this.route.snapshot.data['departments']; //esta propiedad pide datos
+
+
     //esto de queryParams tiene un observable, que es similar a una promesa, pero puede emitir varias veces y otras diferencias
     this.route.queryParams.subscribe((params: Params) =>{ //cuando se utiliza queryParams
         this.personName = params['name']; //cuando me pasa un parametro tipo name
@@ -36,7 +44,7 @@ export class ContactComponent implements OnInit{
       
     //esto se utiliza solo para cuando la ruta viene dada asi /:id
     this.route.params.subscribe((params: Params) => {
-      this.id = params['id']//cuando me pasa el parametro tipo id, pero asisnandole nombre antes en routing.modules, no navbar
+      this.id = params['id']; //cuando me pasa el parametro tipo id, pero asignandole nombre antes en routing.modules, no navbar
     });
 
   }

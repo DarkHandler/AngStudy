@@ -7,6 +7,8 @@
         {{conctactForm.value | json}}
     </pre>
     
+    <br>
+
     <form (ngSubmit)="onSubmit(conctactForm.value)" #conctactForm="ngForm">
         <div class="container">
             <div class="row">
@@ -24,12 +26,10 @@
             </div>
             <br>
             <div class="row">
-                <label for="department">Name</label>
+                <label for="department">Department</label>
                 <select name="department" id="department" [(ngModel)]="model.department">
                     <option selected>Open this select menu</option>
-                    <option value="marketing">Marketing</option>
-                    <option value="sales">Sales</option>
-                    <option value="other">Other</option>
+                    <option *ngFor="let department of departments" [value]="department"> {{department}} </option>
                 </select>
             </div>
             <br>
